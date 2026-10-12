@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header">
+            <div>
+                <h1>🎓 Student Task Manager</h1>
+                <p>Organize your studies. Achieve your goals.</p>
+            </div>
+            <div class="header-right">
+                <span id="todayDate"></span>
+                <button id="themeToggle" class="theme-toggle">
+                    🌙 Dark Mode
+                </button>
+            </div>
+        </header>
+
+        <section class="stats">
+            <div class="stat-card blue">
+                <span>📋 Total Tasks</span>
+                <h2 id="totalTasks">0</h2>
+            </div>
+            <div class="stat-card orange">
+                <span>⏳ Pending</span>
+                <h2 id="pendingTasks">0</h2>
+            </div>
+            <div class="stat-card green">
+                <span>✅ Completed</span>
+                <h2 id="completedTasks">0</h2>
+            </div>
+            <div class="stat-card red">
+                <span>⚠️ Overdue</span>
+                <h2 id="overdueTasks">0</h2>
+            </div>
+        </section>
+
+        <section class="progress-section">
+            <div class="progress-info">
+                <div>
+                    <h2>Daily Progress 🚀</h2>
+                    <p id="progressText">Add a task to start your progress!</p>
+                </div>
+                <strong id="progressPercent">0%</strong>
+            </div>
+            <div class="progress-track">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </section>
+
+        <main class="main-content">
+
+            <section class="form-section">
+                <h2 id="formHeading">➕ Add New Task</h2>
+
+                <form id="taskForm">
+                    <label for="title">Task Title *</label>
+                    <input
+                        type="text"
+                        id="title"
+                        maxlength="100"
+                        placeholder="e.g. Complete Java assignment"
+                        required
+                    >
+
+                    <label for="description">Description</label>
+                    <textarea
+                        id="description"
+                        maxlength="500"
+                        rows="4"
+                        placeholder="Enter task details..."
+                    ></textarea>
+                    <div class="character-count">
+                        <span id="charCount">0</span>/500
+                    </div>
+
+                    <label for="dueDate">Due Date *</label>
+                    <input type="date" id="dueDate" required>
+
+                    <label for="priority">Priority *</label>
+                    <select id="priority" required>
+                        <option value="Low">🟢 Low</option>
+                        <option value="Medium" selected>🟡 Medium</option>
+                        <option value="High">🔴 High</option>
+                    </select>
+
+                    <div class="form-buttons">
+                        <button type="submit" id="submitBtn">
+                            ➕ Add Task
+                        </button>
+                        <button
+                            type="button"
+                            id="cancelBtn"
+                            class="cancel-btn hidden"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+
+                <div class="tip">
+                    💡 <strong>Study Tip</strong>
+                    <p>Small steps every day lead to big results!</p>
+                </div>
+            </section>
+
+            <section class="tasks-section">
+                <div class="tasks-heading">
+                    <h2>📝 My Tasks</h2>
+                    <span id="visibleCount">0 tasks</span>
+                </div>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="🔍 Search by title or description..."
+                >
+
+                <div class="filters">
+                    <select id="statusFilter" aria-label="Filter by status">
+                        <option value="All">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+
+                    <select id="priorityFilter" aria-label="Filter by priority">
+                        <option value="All">All Priorities</option>
+                        <option value="High">High Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="Low">Low Priority</option>
+                    </select>
+
+                    <select id="sortFilter" aria-label="Sort tasks">
+                        <option value="date">Sort by Due Date</option>
+                        <option value="priority">Sort by Priority</option>
+                        <option value="title">Sort by Title</option>
+                    </select>
+                </div>
+
+                <div class="quick-filters">
+                    <button class="quick-btn active" data-filter="All">
+                        All Tasks
+                    </button>
+                    <button class="quick-btn" data-filter="Pending">
+                        Pending
+                    </button>
+                    <button class="quick-btn" data-filter="Completed">
+                        Completed
+                    </button>
+                </div>
+
+                <div id="taskList" class="task-list"></div>
+
+                <div class="list-footer">
+                    <span id="footerCount">0 tasks remaining</span>
+                    <button type="button" id="clearCompleted" class="clear-btn">
+                        Clear Completed
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>Made for students ❤️ | Stay organized, stay productive!</p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
